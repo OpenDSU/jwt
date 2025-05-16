@@ -14,7 +14,7 @@ if (supportsKeyObjects) {
 }
 
 function checkIsPublicKey(key) {
-    if ($$.Buffer.isBuffer(key)) {
+    if (Buffer.isBuffer(key)) {
         return;
     }
 
@@ -44,7 +44,7 @@ function checkIsPublicKey(key) {
 }
 
 function checkIsPrivateKey(key) {
-    if ($$.Buffer.isBuffer(key)) {
+    if (Buffer.isBuffer(key)) {
         return;
     }
 
@@ -60,7 +60,7 @@ function checkIsPrivateKey(key) {
 }
 
 function checkIsSecretKey(key) {
-    if ($$.Buffer.isBuffer(key)) {
+    if (Buffer.isBuffer(key)) {
         return;
     }
 
@@ -114,7 +114,7 @@ function typeError(template) {
 }
 
 function bufferOrString(obj) {
-    return $$.Buffer.isBuffer(obj) || typeof obj === 'string';
+    return Buffer.isBuffer(obj) || typeof obj === 'string';
 }
 
 function normalizeInput(thing) {
@@ -136,7 +136,7 @@ function createHmacSigner(bits) {
 function createHmacVerifier(bits) {
     return function verify(thing, signature, secret) {
         let computedSig = createHmacSigner(bits)(thing, secret);
-        return $$.Buffer.from(signature).equals($$.Buffer.from(computedSig));
+        return Buffer.from(signature).equals(Buffer.from(computedSig));
     }
 }
 

@@ -1,4 +1,4 @@
-let asn = require('../../lib/asn1/asn1')
+let asn = require('../../../asn1/asn1.js')
 let factor = require('./factor')
 let one = new asn.bignum(1)
 

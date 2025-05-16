@@ -21,7 +21,7 @@ function safeJsonParse(thing) {
 
 function headerFromJWS(jwsSig) {
     let encodedHeader = jwsSig.split('.', 1)[0];
-    return safeJsonParse($$.Buffer.from(encodedHeader, 'base64').toString('binary'));
+    return safeJsonParse(Buffer.from(encodedHeader, 'base64').toString('binary'));
 }
 
 function securedInputFromJWS(jwsSig) {
@@ -35,7 +35,7 @@ function signatureFromJWS(jwsSig) {
 function payloadFromJWS(jwsSig, encoding) {
     encoding = encoding || 'utf8';
     let payload = jwsSig.split('.')[1];
-    return $$.Buffer.from(payload, 'base64').toString(encoding);
+    return Buffer.from(payload, 'base64').toString(encoding);
 }
 
 function isValidJws(string) {

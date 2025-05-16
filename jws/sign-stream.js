@@ -5,7 +5,7 @@ let toString = require('./tostring');
 let util = require('util');
 
 function base64url(string, encoding) {
-    return $$.Buffer
+    return Buffer
         .from(string, encoding)
         .toString('base64')
         .replace(/=/g, '')

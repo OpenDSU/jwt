@@ -8,18 +8,18 @@ function DataStream(data) {
 
     // No input
     if (!data) {
-        this.buffer = $$.Buffer.alloc(0);
+        this.buffer = Buffer.alloc(0);
         return this;
     }
 
     // Stream
     if (typeof data.pipe === 'function') {
-        this.buffer = $$.Buffer.alloc(0);
+        this.buffer = Buffer.alloc(0);
         data.pipe(this);
         return this;
     }
 
-    // $$.Buffer or String
+    // Buffer or String
     // or Object (assumedly a passworded key)
     if (data.length || typeof data === 'object') {
         this.buffer = data;
@@ -38,7 +38,7 @@ function DataStream(data) {
 util.inherits(DataStream, Stream);
 
 DataStream.prototype.write = function write(data) {
-    this.buffer = $$.Buffer.concat([this.buffer, $$.Buffer.from(data)]);
+    this.buffer = Buffer.concat([this.buffer, Buffer.from(data)]);
     this.emit('data', data);
 };
 

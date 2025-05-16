@@ -16,13 +16,13 @@ function base64Url(base64) {
 }
 
 function signatureAsBuffer(signature) {
-    if ($$.Buffer.isBuffer(signature)) {
+    if (Buffer.isBuffer(signature)) {
         return signature;
     } else if ('string' === typeof signature) {
-        return $$.Buffer.from(signature, 'base64');
+        return Buffer.from(signature, 'base64');
     }
 
-    throw new TypeError('ECDSA signature must be a Base64 string or a $$.Buffer');
+    throw new TypeError('ECDSA signature must be a Base64 string or a Buffer');
 }
 
 function derToJose(signature, alg) {
@@ -90,7 +90,7 @@ function derToJose(signature, alg) {
     let rPadding = paramBytes - rLength,
         sPadding = paramBytes - sLength;
 
-    let dst = $$.Buffer.allocUnsafe(rPadding + rLength + sPadding + sLength);
+    let dst = Buffer.allocUnsafe(rPadding + rLength + sPadding + sLength);
 
     for (offset = 0; offset < rPadding; ++offset) {
         dst[offset] = 0;
@@ -142,7 +142,7 @@ function joseToDer(signature, alg) {
 
     let shortLength = rsBytes < MAX_OCTET;
 
-    let dst = $$.Buffer.allocUnsafe((shortLength ? 2 : 3) + rsBytes);
+    let dst = Buffer.allocUnsafe((shortLength ? 2 : 3) + rsBytes);
 
     let offset = 0;
     dst[offset++] = ENCODED_TAG_SEQ;
